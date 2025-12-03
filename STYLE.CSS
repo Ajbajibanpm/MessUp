@@ -15,7 +15,7 @@ background-color: #ece5dd;
     height: calc(100dvh - 140px);
     padding: 32px;
     overflow-y: auto;
-    background-image: url(img/background.jpg);
+    background-image: url(sfondo.jpg);
 }
 
 .chat-row{
@@ -100,3 +100,4 @@ img {
   height: 50px;
   border-radius: 50%;
 }
+
