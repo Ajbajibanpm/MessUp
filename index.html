@@ -1,109 +1,85 @@
-<!DOCTYPE html>
-<html lang="it"> <!--la lingua-->
-<head>
-    <meta charset="UTF-8"> <!--info sulla pagina: verranno usati caratteri latini-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--info sulla pagina: scala, etc-->
-    <title>MessApp</title> 
-    <link rel="icon" type="image/ico" href="icongotch.ico"> <!--relazione-tipo/estensione-indirizzo del file-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="STYLE.CSS">
-</head>
-<body>
-    <!--INTESTAZIONE-->
-    <header>
-        <div class="header-left"> 
-            <img src="Gotcha.png" alt="Contact Picture">
-            <div class="contact-info">
-                <h3>Gotch</h3>
-                <p>Online 🟢</p> 
-            </div>
-        </div>
-        <div class="header-right"> 
-            <i class="bi bi-search"></i>
-            <i class="bi bi-arrow-up-circle-fill"></i>
-            <i class="bi bi-journal-medical"></i>
-            <i class="bi bi-three-dots"></i>
-        </div>
-    </header>
+// operazioni di preparazione
+// Recupero gli elementi di interesse della pagina:
+const input = document.querySelector('input');
+const button = document.querySelector('button');
+const chatBox = document.querySelector('.chat-box');
 
+// preparazione dei messaggi iniziali
+const messages = [
+    {
+        type: 'sent',
+        text: 'Ciao, come va?',
+        time: '03/12/2025 12:05:00'
+    },
+    {
+        type: 'received',
+        text: 'Benissimo, grazie. E tu?',
+        time: '03/12/2025 12:05:00'
+    }
+];
 
-
-    <!--BOX DELLA CHAT-->
-    <div class="chat-box">
-        <div class="chat-row sent">
-            <div class="chat-message sent">
-                <p>Ciao, come va?</p>
-                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
-            </div>
-        </div> 
-        <div class="chat-row received">
-            <div class="chat-message received">
-                <p>Tutto bene, grazie. E tu?</p>
-                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
-            </div>
-            
-        </div>
-        <div class="chat-row sent">
-            <div class="chat-message sent">
-                <p>Ciao, come va?</p>
-                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
-            </div>
-        </div> 
-        <div class="chat-row received">
-            <div class="chat-message received">
-                <p>Tutto bene, grazie. E tu?</p>
-                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
-            </div>
-            
-        </div>
-        <div class="chat-row sent">
-            <div class="chat-message sent">
-                <p>Ciao, come va?</p>
-                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
-            </div>
-        </div> 
-        <div class="chat-row received">
-            <div class="chat-message received">
-                <p>Tutto bene, grazie. E tu?</p>
-                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
-            </div>
-            
-        </div>
-        <div class="chat-row sent">
-            <div class="chat-message sent">
-                <p>Ciao, come va?</p>
-                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
-            </div>
-        </div> 
-        <div class="chat-row received">
-            <div class="chat-message received">
-                <p>Tutto bene, grazie. E tu?</p>
-                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
-            </div>
-            
-        </div>
-        <div class="chat-row sent">
-            <div class="chat-message sent">
-                <p>Ciao, come va?</p>
-                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
-            </div>
-        </div> 
-        <div class="chat-row received">
-            <div class="chat-message received">
-                <p>Tutto bene, grazie. E tu?</p>
-                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
-            </div>
-            
-        </div> 
+// Funzione principale per renderizzare tutti i messaggi nella chat-box
+const renderMessages = () => {
+    // Svuoto la chat-box (approccio meno performante ma efficace per questo esempio)
+    chatBox.innerHTML = '';
+    
+    // Per ciascuno dei messaggi..
+    for (const message of messages) {
+        chatBox.innerHTML += `
+<div class="chat-row ${message.type}">
+    <div class="chat-message">
+        <p>${message.text}</p>
+        <time datetime="${message.time}">${message.time}</time>
     </div>
-    <!--FONDO PAGINA-->
-    <footer>
-        <input type="text" placeholder="Scrivi qui">
-        <button><i class="bi bi-arrow-up-circle-fill"></i></button>
-    </footer>
-    <script src="script.js">
-        
-    </script>
-</body>
-</html>
+</div>`;
+    }
+    
+    // Scorre la chat-box in basso dopo il render, se necessario (Opzionale)
+    chatBox.scrollTop = chatBox.scrollHeight;
+};
 
+// Funzione principale per inviare un nuovo messaggio
+const sendMessage = () => {
+    const insertedText = input.value.trim(); // "trim" toglie gli spazi superflui
+
+    if(insertedText === '') return; // Se non c'è testo l'invio viene annullato
+
+    const newMessage = {
+        type: 'sent', // Assumiamo che l'utente stia sempre inviando ('sent')
+        text: insertedText,
+        time: new Date().toLocaleString()
+    };
+
+    // 1. Aggiungo il nuovo messaggio all'array
+    messages.push(newMessage);
+
+    // 2. Aggiorno la visualizzazione
+    renderMessages();
+    
+    // 3. Pulisco l'input e mantengo il focus
+    input.value = '';
+    input.focus();
+};
+
+//# OPERAZIONI DI AVVIO PAGINA
+// Carico e visualizzo i messaggi iniziali
+renderMessages();
+
+//# OPERAZIONI DI INTERAZIONE CON L'UTENTE
+
+// 1. Al click del bottone..
+button.addEventListener('click', sendMessage);
+
+
+// 2. Alla pressione del tasto nel campo di input..
+input.addEventListener('keypress', function(event) {
+    // Verifica se il tasto premuto è il tasto 'Invio' (codice 13)
+    if (event.key === 'Enter') {
+        
+        // Impedisce la newline (il comportamento predefinito) o l'invio del form
+        event.preventDefault(); 
+        
+        // Chiama la stessa funzione che viene usata al click del bottone
+        sendMessage(); 
+    }
+});
