@@ -1,66 +1,108 @@
-// operazioni di preparazione
-// Recupero gli elementi di interesse della pagina:
-const input = document.querySelector('input')
-const button = document.querySelector('button')
-const chatBox = document.querySelector('.chat-box')
+<!DOCTYPE html>
+<html lang="it"> <!--la lingua-->
+<head>
+    <meta charset="UTF-8"> <!--info sulla pagina: verranno usati caratteri latini-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--info sulla pagina: scala, etc-->
+    <title>MessApp</title> 
+    <link rel="icon" type="image/ico" href="img/icongotch.ico"> <!--relazione-tipo/estensione-indirizzo del file-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="STYLE.CSS">
+</head>
+<body>
+    <!--INTESTAZIONE-->
+    <header>
+        <div class="header-left"> 
+            <img src="img/Gotcha.png" alt="Contact Picture">
+            <div class="contact-info">
+                <h3>Gotch</h3>
+                <p>Online 🟢</p> 
+            </div>
+        </div>
+        <div class="header-right"> 
+            <i class="bi bi-search"></i>
+            <i class="bi bi-arrow-up-circle-fill"></i>
+            <i class="bi bi-journal-medical"></i>
+            <i class="bi bi-three-dots"></i>
+        </div>
+    </header>
 
-// preparazione dei messaggi iniziali
-const messages = [
-    {
-    type: 'sent',
-    text: 'Ciao, come va?',
-    time: '03/12/2025 12:05:00'
-},
-{
-    type: 'received',
-    text: 'Benissimo, grazie. E tu?',
-    time: '03/12/2025 12:05:00'
-}
-]
 
-//# OPERAZIONI DI AVVIO PAGINA
 
- //Svuoto la chat-box
-    chatBox.innerHTML = '';
-    //per ciascuno dei messaggi..
-for (const message of messages) {
-    chatBox.innerHTML += `
-<div class="chat-row ${message.type}">
-    <div class="chat-message">
-        <p>${message.text}</p>
-        <time datetime="${message.time}">${message.time}</time>
+    <!--BOX DELLA CHAT-->
+    <div class="chat-box">
+        <div class="chat-row sent">
+            <div class="chat-message sent">
+                <p>Ciao, come va?</p>
+                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
+            </div>
+        </div> 
+        <div class="chat-row received">
+            <div class="chat-message received">
+                <p>Tutto bene, grazie. E tu?</p>
+                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
+            </div>
+            
+        </div>
+        <div class="chat-row sent">
+            <div class="chat-message sent">
+                <p>Ciao, come va?</p>
+                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
+            </div>
+        </div> 
+        <div class="chat-row received">
+            <div class="chat-message received">
+                <p>Tutto bene, grazie. E tu?</p>
+                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
+            </div>
+            
+        </div>
+        <div class="chat-row sent">
+            <div class="chat-message sent">
+                <p>Ciao, come va?</p>
+                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
+            </div>
+        </div> 
+        <div class="chat-row received">
+            <div class="chat-message received">
+                <p>Tutto bene, grazie. E tu?</p>
+                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
+            </div>
+            
+        </div>
+        <div class="chat-row sent">
+            <div class="chat-message sent">
+                <p>Ciao, come va?</p>
+                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
+            </div>
+        </div> 
+        <div class="chat-row received">
+            <div class="chat-message received">
+                <p>Tutto bene, grazie. E tu?</p>
+                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
+            </div>
+            
+        </div>
+        <div class="chat-row sent">
+            <div class="chat-message sent">
+                <p>Ciao, come va?</p>
+                <time datetime="02/12/2025 13:22:00">02/12/2025 13:22:00</time>
+            </div>
+        </div> 
+        <div class="chat-row received">
+            <div class="chat-message received">
+                <p>Tutto bene, grazie. E tu?</p>
+                <time datetime="02/12/2025 14:45:00">02/12/2025 14:45:00</time>
+            </div>
+            
+        </div> 
     </div>
-</div>`
-}
-
-//# OPERAZIONI DI INTERAZIONE CON L'UTENTE
-// Al click del bottone..
-button.addEventListener('click',function(){
-    const insertedText = input.value.trim(); //"trim" toglie gli spazi superflui
-
-    if(insertedText === '') return //se non c'è testo l'invio viene annullato
-
-    const newMessage = {
-        type: 'sent',
-        text: insertedText,
-        time: new Date().toLocaleString()
-    }
-
- messages.push(newMessage)
-
- //Svuoto la chat-box
-    chatBox.innerHTML = '';
-
- //per ciascuno dei messaggi..
-for (const message of messages) {
-    chatBox.innerHTML += `
-<div class="chat-row ${message.type}">
-    <div class="chat-message">
-        <p>${message.text}</p>
-        <time datetime="${message.time}">${message.time}</time>
-    </div>
-</div>`
-}
-input.value = ''
-input.focus()
-})
+    <!--FONDO PAGINA-->
+    <footer>
+        <input type="text" placeholder="Scrivi qui">
+        <button><i class="bi bi-arrow-up-circle-fill"></i></button>
+    </footer>
+    <script src="script.js">
+        
+    </script>
+</body>
+</html>
