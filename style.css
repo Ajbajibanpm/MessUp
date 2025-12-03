@@ -1,0 +1,39 @@
+* {margin:0; 
+  padding:0; 
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  }
+
+/*---------------------------------*/
+
+.chat-box {
+    height: calc(13dvh);
+    padding: 40px 10px;
+    margin-bottom: 30px; 
+    margin-top: 5px; 
+    border-radius: 8px;
+ box-sizing: border-box;
+ box-shadow: 3px 3px 5px #000;
+    background-image: url(b.png);
+    background-position: 30% 10%;
+    opacity: 0.60;
+}
+
+body{display:flex;}
+
+.chat-sotto {
+    height: calc(13dvh);
+    padding: 40px 10px;
+    margin-bottom: 5px; 
+    margin-top: 30px; 
+    border-radius: 8px;
+ box-sizing: border-box;
+ box-shadow: 3px 3px 5px #000;
+    background-image: url(champagne-2264811_1280.jpg);
+    background-position: 50% 47%;
+    opacity: 0.60;
+}
+
+.prova {
+    justify-content: center;
+}
