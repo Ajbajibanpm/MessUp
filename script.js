@@ -59,6 +59,7 @@ const sendMessage = () => {
     // 3. Pulisco l'input e mantengo il focus
     input.value = '';
     input.focus();
+    chatBox.scrollTop = chatBox.scrollHeight;
 };
 
 //# OPERAZIONI DI AVVIO PAGINA
@@ -83,3 +84,4 @@ input.addEventListener('keypress', function(event) {
         sendMessage(); 
     }
 });
+
