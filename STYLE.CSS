@@ -15,7 +15,7 @@ background-color: #ece5dd;
     height: calc(100dvh - 140px);
     padding: 32px;
     overflow-y: auto;
-    background-image: url(sfondo.jpg);
+    background-image: url(img/background.jpg);
 }
 
 .chat-row{
@@ -25,14 +25,19 @@ background-color: #ece5dd;
 
 .chat-row.sent{
     justify-content: flex-end;
+    padding-left: 32px;
 }
 .chat-row.received {
   justify-content: flex-start;
+  padding-right: 32px;
 }
 .chat-message {
     padding: 8px;
     border-radius: 8px;
-    box-shadow: 3px 3px 5px #00000080;
+    box-shadow: 3px 3px 10px #00000080;
+    /* === NUOVE REGOLE PER L'ANDARE A CAPO === */
+    max-width: 100%; 
+    word-wrap: break-word; /* Metodo compatibile */
 }
 
 .chat-row.sent > .chat-message {background-color: #b5f9ba;}
@@ -94,7 +99,4 @@ img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-
 }
-
-
